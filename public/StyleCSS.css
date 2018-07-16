@@ -8,3 +8,10 @@ and open the template in the editor.
     Author     : Administrateur
 */
 
+ul {
+  list-style-type: none;
+}
+
+h1 {
+    text-align: center;
+}
