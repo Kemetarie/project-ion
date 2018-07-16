@@ -26,6 +26,22 @@ class DefaultController extends Controller {
      * @Route("/accueil",name="Accueil")
      */
     public function indexAction() {
-        return $this->render('general.html.twig');
+        return $this->render('accueil.html.twig');
+    }
+    
+    /**
+     * 
+     * @Route("/faq",name="FAQ")
+     */
+    public function faqAction() {
+        return $this->render('FAQ.html.twig');
+    }
+    
+    /**
+     * 
+     * @Route("/cgu",name="CGU")
+     */
+    public function cguAction() {
+        return $this->render('CGU.html.twig');
     }
 }
