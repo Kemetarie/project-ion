@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: Administrateur
  * Date: 16/07/2018
- * Time: 12:05
+ * Time: 14:53
  */
 
 namespace App\Entity;
@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table
  */
-class Category
+class Picture
 {
     /**
      * @ORM\Id
@@ -23,12 +23,12 @@ class Category
      */
     private $id;
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="binary")
      */
-    private $libelle;
+    private $path;
 
     /**
-     * @ORM\OneToMany(targetEntity="Ad", mappedBy="category")
+     * @ORM\ManyToOne(targetEntity="ad", inversedBy="picture")
      */
     private $ad;
 }

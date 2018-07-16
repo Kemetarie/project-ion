@@ -24,26 +24,6 @@ class Ad
     private $id;
 
     /**
-     * @return mixed
-     */
-
-
-    /**
-     * @return mixed
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
      * @ORM\Column(type="string", length=50)
      */
     private $title;
@@ -68,9 +48,13 @@ class Ad
      */
     private $dateCreated;
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="Ad")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="ad")
      */
     private $category;
+    /**
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="ad")
+     */
+    private $picture;
 
     public function getId()
     {
@@ -87,6 +71,7 @@ class Ad
 
         return $this;
     }
+
     /**
      * @return mixed
      */
@@ -197,6 +182,40 @@ class Ad
     public function setDateCreated($dateCreated)
     {
         $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * @param mixed $pictures
+     * @return Ad
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
 
         return $this;
     }
