@@ -12,28 +12,20 @@ ul {
   list-style-type: none;
 }
 
+.pays {
+    text-align: right;
+}
+
 h1 {
     text-align: center;
 }
 
 
-.navbar-fixed-top {
-    min-height: 1000px;
-}
-
-.navbar-nav > li > a {
-    padding-top: 0px;
-    padding-bottom: 500px;
-    line-height: 80px;
-}
-
-@media (max-width: 767px) {
-    .navbar-nav > ul > li > a {
-    line-height: 80px;
-    padding-top: 10px;
-    padding-bottom: 10px;}
-}
-.test {
+.logo {
     padding: 0px!important;
     padding-right: 10px!important;
+}
+
+.footer {
+    text-align: center;
 }
