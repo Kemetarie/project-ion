@@ -1,36 +1,69 @@
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="stylesheet" href="{{asset('Style.css')}}">
-        <link rel="stylesheet" href="{{asset('bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{asset('bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css')}}">        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <title>
-            {% block title %}Le site officel de vente vraiment meilleur que le Bon Coin ... Oui {% endblock %}</title>
+            {% block title %}Valkyrie{% endblock %}</title>
     </head>    
 
     <body>
         {% block header %}
+            <br><br>
             <header>        
                 <nav class="navbar navbar-inverse navbar-fixed-top">
                     <div class="container">          
                         <div class="collapse navbar-collapse">
-                            <a class="navbar-brand test" href="{{ path('accueil')}}"><img class="logo" src="{{asset('Media/Valkyrie.png')}}" alt="" width="50px" height="50px"/></a>      
-                            <ul class="nav navbar-nav">
-                                <li><a class="navbar-brand" href="{{ path('Add ad') }}">Deposer une annonce</a></li>
+                            <a class="col-lg-2 navbar-brand logo" href="{{ path('accueil')}}"><img src="{{asset('Media/Valkyrie.png')}}" alt="" width="50px" height="50px"/></a>      
+                            <ul class="col-lg-10 nav navbar-nav">
+                                <li><a class="navbar-brand" href="{#{{ path('Add ad') }}#}">Deposer une annonce</a></li>
                                 <li><a class="navbar-brand" href="#">Offres</a></li>
                                 <li><a class="navbar-brand" href="#">Demandes</a></li>
                                 <li><a class="navbar-brand" href="#">Mes favoris</a></li>
                                 <li><a class="navbar-brand" href="#">Boutique</a></li>
                                 <li><a class="navbar-brand" href="#">Messages</a></li>
                                 <li><a class="navbar-brand" href="#">Blank</a></li>
-                                <li><a class="navbar-brand" href="#">Se connecter</a></li>
+                                <li>
+                                    <div class="modal fade" id="myModalCountry" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title text-center" id="myModalLabel">Ajouter un pays</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-xs-12 text-center">
+                                                            {{ form_start(country) }}
+                                                            <div class="form-group">
+                                                                {{ form_errors(country.libelle) }}
+                                                                {{ form_label(country.libelle, 'Nom du pays') }}
+                                                                {{ form_widget(country.libelle, {'attr': {'class': 'form-control'}}) }}
+                                                            </div>
+                                                            <br />
+                                                            <button type="submit" class="btn btn-flat btn-warning">
+                                                                Enregistrer
+                                                            </button>
+                                                            {{ form_end(country) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>          
                     </div>
                 </nav>
-                </br></br>
+                <br><br>
             </header>
         {% endblock %}   
         <div class="container col-lg-8 col-lg-offset-2">
@@ -39,11 +72,12 @@
             {% endblock %}
         </div>
         {% block footer %}
+            <br><br>
             <div class="container">
-                <div name="" class="row fixed-bottom">
+                <div class="row fixed-bottom footer">
                     <p>Sur le site Valkyrie.Satan, passez des annonces aux prix exhorbitants et non sans conséquences. Vous pouvez consulter les petits sacrifices de gens particuliers et de professionnels en boucherie chevaline partout en Enfer ... euh en France, que vous cherchiez des annonces immobilières, des voitures d'occasion, des offres d'emploi, des meubles, du matériel électronique ou tout autre type de produits...(*blush*).</p>
                 </div>
-            </div>
+            </div>            
         {% endblock %}
     </body>   
 </html>
