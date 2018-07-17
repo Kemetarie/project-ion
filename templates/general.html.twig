@@ -1,51 +1,49 @@
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="{{asset('StyleCSS.css')}}">
-<link rel="stylesheet" href="{{asset('bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css')}}">
-<head>
-{% block header %}
+        <link rel="stylesheet" href="{{asset('Style.css')}}">
+        <link rel="stylesheet" href="{{asset('bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css')}}">
+        <title>
+            {% block title %}Le site officel de vente vraiment meilleur que le Bon Coin ... Oui {% endblock %}</title>
+    </head>    
 
-    <title>Le site officel de vente vraiment meilleur que le Bon Coin ... Oui </title>
-    </br>
-    <nav class="container col-lg-8 col-lg-offset-2">               
-        <div class="row col-lg-2">
-            <a href="aled.com">PH</a>
+    <body>
+        {% block header %}
+            <header>        
+                <nav class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container">          
+                        <div class="collapse navbar-collapse">
+                            <a class="navbar-brand test" href="{{ path('accueil')}}"><img class="logo" src="{{asset('Media/Valkyrie.png')}}" alt="" width="50px" height="50px"/></a>      
+                            <ul class="nav navbar-nav">
+                                <li><a class="navbar-brand" href="#">Deposer une annonce</a></li>
+                                <li><a class="navbar-brand" href="#">Offres</a></li>
+                                <li><a class="navbar-brand" href="#">Demandes</a></li>
+                                <li><a class="navbar-brand" href="#">Mes favoris</a></li>
+                                <li><a class="navbar-brand" href="#">Boutique</a></li>
+                                <li><a class="navbar-brand" href="#">Messages</a></li>
+                                <li><a class="navbar-brand" href="#">Blank</a></li>
+                                <li><a class="navbar-brand" href="#">Se connecter</a></li>
+                            </ul>
+                        </div>          
+                    </div>
+                </nav>
+                </br></br>
+            </header>
+        {% endblock %}   
+        <div class="container col-lg-8 col-lg-offset-2">
+            {% block main %}
+
+            {% endblock %}
         </div>
-        <div class="row col-lg-2">
-            <a href="aled.com">Deposer une annonce</a>
-        </div>
-        <div class="row col-lg-1">
-            <a href="aled.com">Offres</a>
-        </div>
-        <div class="row col-lg-1">
-            <a href="aled.com">Demandes</a>
-        </div>
-        <div class="row col-lg-1">
-            <a href="aled.com">Mes favoris</a>
-        </div>
-        <div class="row col-lg-1">
-            <a href="aled.com">Boutique</a>
-        </div>
-        <div class="row col-lg-1">
-            <a href="aled.com">Message</a>
-        </div>
-        <div class="row col-lg-1">
-            Le vent wesh
-        </div>
-        <div class="row col-lg-2">
-            <a href="aled.com">Se connecter</a>
-        </div>
-    </nav>
-{% endblock %}   
-</head>
-<body>
-    </br>
-{% block body %}
-    
-{% endblock %}
-</body>
-{% block footer %}
-    Sur le site leboncoin.fr, passez des annonces gratuites et sans commission. Vous pouvez consulter des petites annonces de particuliers et de professionnels partout en France, que vous cherchiez des annonces immobilières, des voitures d'occasion, des offres d'emploi, des meubles, du matériel électronique ou tout autre type de produits d'occasion.
-{% endblock %}
+        {% block footer %}
+            <div class="container">
+                <div name="" class="row fixed-bottom">
+                    <p>Sur le site leboncoin.fr, passez des annonces gratuites et sans commission. Vous pouvez consulter des petites annonces de particuliers et de professionnels partout en France, que vous cherchiez des annonces immobilières, des voitures d'occasion, des offres d'emploi, des meubles, du matériel électronique ou tout autre type de produits d'occasion.</p>
+                </div>
+            </div>
+        {% endblock %}
+    </body>   
+</html>
