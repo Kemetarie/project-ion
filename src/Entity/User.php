@@ -23,6 +23,10 @@ class User
      */
     private $id;
     /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $username;
+    /**
      * @ORM\Column(type="string")
      */
     private $email;
@@ -62,6 +66,25 @@ class User
     {
         $this->id = $id;
 
+        return $this;
+    }
+    
+    /**
+     * @return mixed
+     */
+    public function getUsername() 
+    {
+        return $this->username;
+    }
+    
+    /**
+     * @param mixed $username
+     * @return User
+     */
+    public function setUsername($username) 
+    {
+        $this->username = $username;
+        
         return $this;
     }
 
@@ -159,5 +182,7 @@ class User
 
         return $this;
     }
+    
+
 
 }
