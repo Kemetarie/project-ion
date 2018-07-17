@@ -115,14 +115,27 @@ class AdController extends Controller
 
         if ($form->isValid()){
 
-            var_dump($ad);
             $ad->setDateCreated(new \DateTime());
-            $emForm = $this->getDoctrine()->getManager();
-            $emForm->persist($ad);
-            $emForm->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($ad);
+            $em->flush();
             return $this->redirectToRoute('accueil');
         }
 
         return $this->render('add_ad.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @Route("ad/list", name="ad list")
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Ad::class);
+
+        $ads = $repo->findBy(array(), array('category'=>'ASC'));
+
+        return $this->render('listAd.html.twig', array('ads'=>$ads));
     }
 }
