@@ -68,6 +68,25 @@ class User
 
         return $this;
     }
+    
+    /**
+     * @return mixed
+     */
+    public function getUsername() 
+    {
+        return $this->username;
+    }
+    
+    /**
+     * @param mixed $username
+     * @return User
+     */
+    public function setUsername($username) 
+    {
+        $this->username = $username;
+        
+        return $this;
+    }
 
     /**
      * @return mixed
@@ -163,5 +182,7 @@ class User
 
         return $this;
     }
+    
+
 
 }

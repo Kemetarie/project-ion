@@ -25,12 +25,36 @@ class UserController extends Controller{
     public function inscriptionAction(Request $request){
         $user = new User();
         $form = $this->createFormBuilder($user)
-                ->add('Nom d\'utilisateur',TextType::class,array('constraints'=>array(new NotNull,
+                ->add('username',TextType::class,array('constraints'=>array(new NotNull,
                         new Length(array('min' => '5', 'max'=> '50')))))
                 ->add('email',TextType::class,array('constraints'=>array(new NotNull,
+                        new Length(array('max'=> '255')))))
+                ->add('password',TextType::class,array('constraints'=>array(new NotNull,
                         new Length(array('max'=> '255')))))
                 ->add('valider','submit')
                 ->getForm();
         $form->handleRequest($request);
+        
+        
+        if($form->isValid()){
+            
+            $em = $this->getDoctrine()->getManager();
+            $insertUser = new User();
+            $insertUser->setUsername($form->get('username')->getData());
+            $insertUser->setEmail($form->get('email')->getData());
+            $insertUser->setPassword($form->get('password')->getData());
+            
+            $em->persist($insertUser);
+            $em->flush();
+            
+            return new Response('Utilisateur inséré');
+        }
+        
+        
+        return array(
+            'form'=>$form->createView(),
+            'username'=>isset($user)?'Formulaire pour '.$user->getUsername() : 'Oui',
+            'inscription' => $user
+        );
     }
 }
