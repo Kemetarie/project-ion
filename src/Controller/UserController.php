@@ -8,10 +8,13 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\User\User;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotNull;
 
@@ -35,7 +38,7 @@ class UserController extends Controller{
                         new Length(array('max'=> '255')))))
                 ->add('password',TextType::class,array('constraints'=>array(new NotNull,
                         new Length(array('max'=> '255')))))
-                ->add('valider','submit')
+                ->add('valider',SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
         
@@ -47,18 +50,15 @@ class UserController extends Controller{
             $insertUser->setUsername($form->get('username')->getData());
             $insertUser->setEmail($form->get('email')->getData());
             $insertUser->setPassword($form->get('password')->getData());
-            
+            $insertUser->setRoles(Array("User"));
+            $insertUser->setDateRegistered(New \DateTime());
             $em->persist($insertUser);
             $em->flush();
             
             return new Response('Utilisateur inséré');
         }
         
-        
-        return array(
-            'form'=>$form->createView(),
-            'username'=>isset($user)?'Formulaire pour '.$user->getUsername() : 'Oui',
-            'inscription' => $user
-        );
+        return $this->render('inscription.html.twig', array('form'=>$form->createView()));
+
     }
 }

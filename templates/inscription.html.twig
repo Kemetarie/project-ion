@@ -1,8 +1,10 @@
 {% extends "general.html.twig" %}
 
-{% block body %}
+{% block main %}
     <h1>Bienvenue sur la page d'abandon de votre âme sur le site officiel de vente vraiment meilleur que le Bon Coin ... Oui</h1>
     <br><br><br>
-    
-    {{form(form)}}
+    <div class="container row">
+        {% form_theme form 'formAd.html.twig' %}
+        {{form(form)}}
+    </div>
 {% endblock %}
