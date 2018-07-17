@@ -31,4 +31,68 @@ class Category
      * @ORM\OneToMany(targetEntity="Ad", mappedBy="category")
      */
     private $ad;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Category
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLibelle()
+    {
+        return $this->libelle;
+    }
+
+    /**
+     * @param mixed $libelle
+     * @return Category
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAd()
+    {
+        return $this->ad;
+    }
+
+    /**
+     * @param mixed $ad
+     * @return Category
+     */
+    public function setAd($ad)
+    {
+        $this->ad = $ad;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->getLibelle();
+    }
+
+
 }

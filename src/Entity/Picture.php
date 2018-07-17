@@ -31,4 +31,61 @@ class Picture
      * @ORM\ManyToOne(targetEntity="ad", inversedBy="picture")
      */
     private $ad;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     * @return Picture
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * @param mixed $path
+     * @return Picture
+     */
+    public function setPath($path)
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAd()
+    {
+        return $this->ad;
+    }
+
+    /**
+     * @param mixed $ad
+     * @return Picture
+     */
+    public function setAd($ad)
+    {
+        $this->ad = $ad;
+
+        return $this;
+    }
 }
