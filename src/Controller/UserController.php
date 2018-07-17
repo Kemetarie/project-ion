@@ -9,7 +9,10 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,12 +35,21 @@ class UserController extends Controller{
     public function inscriptionAction(Request $request){
         $user = new User();
         $form = $this->createFormBuilder($user)
-                ->add('username',TextType::class,array('constraints'=>array(new NotNull,
+                ->add('username',TextType::class,array('label'=>"Pseudonyme",'constraints'=>array(new NotNull,
                         new Length(array('min' => '5', 'max'=> '50')))))
-                ->add('email',TextType::class,array('constraints'=>array(new NotNull,
+                ->add('email',TextType::class,array('label'=>"Email",'constraints'=>array(new NotNull,
                         new Length(array('max'=> '255')))))
-                ->add('password',TextType::class,array('constraints'=>array(new NotNull,
+                ->add('password',PasswordType::class,array('constraints'=>array(new NotNull,
                         new Length(array('max'=> '255')))))
+                ->add('password', RepeatedType::class, array(
+                        'label'=>"Répétez votre mot de passe",
+                        'type' => PasswordType::class,
+                        'invalid_message' => 'Le mot de passe doit être le même.',
+                        'options' => array('attr' => array('class' => 'password-field')),
+                        'required' => true,
+                        'first_options'  => array('label' => 'Mot de passe'),
+                        'second_options' => array('label' => 'Répétez votre mot de passe'),
+                    ))
                 ->add('valider',SubmitType::class)
                 ->getForm();
         $form->handleRequest($request);
@@ -51,7 +63,7 @@ class UserController extends Controller{
             $insertUser->setEmail($form->get('email')->getData());
             $insertUser->setPassword($form->get('password')->getData());
             $insertUser->setRoles(Array("User"));
-            $insertUser->setDateRegistered(New \DateTime());
+            $insertUser->setDateRegistered(New DateTime());
             $em->persist($insertUser);
             $em->flush();
             
