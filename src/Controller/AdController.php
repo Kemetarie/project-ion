@@ -9,6 +9,8 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -30,7 +32,8 @@ class AdController extends Controller
      */
     public function addAction(Request $request)
     {
-        $form = $this->createFormBuilder(new Ad())
+        $ad = new Ad();
+        $form = $this->createFormBuilder($ad)
             ->add(
                 'title',
                 TextType::class,
@@ -86,7 +89,7 @@ class AdController extends Controller
             )
             ->add(
                 'price',
-                IntegerType::class,
+                NumberType::class,
                 array(
                     'constraints' => array(
                         new NotBlank(),
@@ -96,11 +99,29 @@ class AdController extends Controller
                 )
             )
             ->add(
+                'category',
+                EntityType::class,
+                array(
+                    'class' => Category::class,
+                    'label' => 'Catégorie',
+                )
+            )
+            ->add(
                 'poster',
                 SubmitType::class
             )
             ->getForm();
         $form->handleRequest($request);
+
+        if ($form->isValid()){
+
+            var_dump($ad);
+            $ad->setDateCreated(new \DateTime());
+            $emForm = $this->getDoctrine()->getManager();
+            $emForm->persist($ad);
+            $emForm->flush();
+            return $this->redirectToRoute('accueil');
+        }
 
         return $this->render('add_ad.html.twig', array('form' => $form->createView()));
     }
