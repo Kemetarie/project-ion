@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use App\Entity\Ad;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,6 +20,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\Type;
+
 
 class AdController extends Controller
 {
@@ -37,6 +40,7 @@ class AdController extends Controller
                             new NotBlank(),
                             new NotNull(),
                         ),
+                    'label' => 'Titre',
                 )
             )
             ->add(
@@ -59,11 +63,12 @@ class AdController extends Controller
                             new NotBlank(),
                             new NotNull(),
                         ),
+                    'label' => 'Ville',
                 )
             )
             ->add(
                 'zip',
-                NumberType::class,
+                IntegerType::class,
                 array(
                     'constraints' => array(
                         new NotNull(),
@@ -74,17 +79,20 @@ class AdController extends Controller
                                 'max' => 5,
                             )
                         ),
+                        new Type('Integer'),
                     ),
+                    'label' => 'Code postal',
                 )
             )
             ->add(
                 'price',
-                NumberType::class,
+                IntegerType::class,
                 array(
                     'constraints' => array(
                         new NotBlank(),
                         new NotNull(),
                     ),
+                    'label' => 'Prix',
                 )
             )
             ->add(
