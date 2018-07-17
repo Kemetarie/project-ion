@@ -23,6 +23,10 @@ class User
      */
     private $id;
     /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $username;
+    /**
      * @ORM\Column(type="string")
      */
     private $email;
