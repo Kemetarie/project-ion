@@ -22,6 +22,10 @@ use Symfony\Component\Validator\Constraints\NotNull;
  */
 class UserController extends Controller{
     
+    /**
+     * 
+     * @Route("/inscription",name="inscription")
+     */
     public function inscriptionAction(Request $request){
         $user = new User();
         $form = $this->createFormBuilder($user)
