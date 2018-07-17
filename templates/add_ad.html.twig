@@ -1,0 +1,10 @@
+{% extends "general.html.twig" %}
+
+{% block main %}
+    <div class="container row col-lg-12 center-block ">
+        <div class="">
+        {% form_theme form 'formAd.html.twig' %}
+        {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}
