@@ -1,75 +1,84 @@
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="{{asset('Style.css')}}">
-        <link rel="stylesheet" href="{{asset('bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css')}}">        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <title>
-            {% block title %}Valkyrie{% endblock %}</title>
-    </head>    
+    <link rel="stylesheet" href="{{ asset('Style.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap-3.3.7/bootstrap-3.3.7-dist/css/bootstrap.min.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>
+        {% block title %}Valkyrie{% endblock %}</title>
+</head>
 
-    <body>
-        {% block header %}
-            <br><br>
-            <header>        
-                <nav class="navbar navbar-inverse navbar-fixed-top">
-                    <div class="container">          
-                        <div class="collapse navbar-collapse">
-                            <a class="navbar-brand logo" href="{{ path('accueil')}}"><img src="{{asset('Media/ouioui.jpg')}}" alt="" width="50px" height="50px"/></a>      
-                            <ul class="nav navbar-nav">
-                                <li><a class="navbar-brand" href="{{ path('Add ad') }}">Deposer une annonce</a></li>
-                                <li><a class="navbar-brand" href="#">Offres</a></li>
-                                <li><a class="navbar-brand" href="#">Demandes</a></li>
-                                <li><a class="navbar-brand" href="#">Mes favoris</a></li>
-                                <li><a class="navbar-brand" href="#">Boutique</a></li>
-                                <li><a class="navbar-brand" href="#">Messages</a></li>
-                                <li><a class="navbar-brand" href="#">Blank</a></li>
-                                <li>
+<body>
+{% block header %}
+    <br><br>
+    <header>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="collapse navbar-collapse">
+                    <a class="navbar-brand logo" href="{{ path('accueil') }}"><img src="{{ asset('Media/ouioui.jpg') }}"
+                                                                                   alt="" width="50px"
+                                                                                   height="50px"/></a>
+                    <ul class="nav navbar-nav">
+                        <li><a class="navbar-brand" href="{{ path('Add ad') }}">Deposer une annonce</a></li>
+                        <li><a class="navbar-brand" href="{{ path('ad list') }}">Liste des annonces</a></li>
+                        <li><a class="navbar-brand" href="#">Favoris</a></li>
+                        <li><a class="navbar-brand" href="#">Mes annonces</a></li>
+                        <li><a class="navbar-brand" href="{{ path('FAQ') }}">FAQ</a></li>
+                        <li><a class="navbar-brand" href="{{ path('CGU') }}">CGU</a></li>
+                        <li><a class="navbar-brand" href="{{ path('inscription') }}">S'inscrire</a></li>
+                        <li>
 
-                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Se connecter</button>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+                                    data-target="#myModal">Se connecter
+                            </button>
 
-                                    <div class="modal fade" id="myModal" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Se connecter</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Se connecter</h4>
+                                        </div>
+                                        <div class="modal-body">
 
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+                                            </button>
                                         </div>
                                     </div>
 
-                                </li>
-                            </ul>
-                        </div>          
-                    </div>
-                </nav>
-                <br><br>
-            </header>
-        {% endblock %}   
-        <div class="container col-lg-8 col-lg-offset-2">
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br><br>
+    </header>
+{% endblock %}
+<div class="container col-lg-8 col-lg-offset-2">
             {% block main %}
 
             {% endblock %}
         </div>
-        {% block footer %}
-            <br><br>
-            <div class="container">
-                <div class="row fixed-bottom footer">
-                    <p>Sur le site Valkyrie.Satan, passez des annonces aux prix exhorbitants et non sans conséquences. Vous pouvez consulter les petits sacrifices de gens particuliers et de professionnels en boucherie chevaline partout en Enfer ... euh en France, que vous cherchiez des annonces immobilières, des voitures d'occasion, des offres d'emploi, des meubles, du matériel électronique ou tout autre type de produits...(*blush*).</p>
-                </div>
-            </div>            
-        {% endblock %}
-    </body>   
+{% block footer %}
+    <br><br>
+    <div class="container">
+        <div class="row fixed-bottom footer">
+            <p>Sur le site Valkyrie.Satan, passez des annonces aux prix exhorbitants et non sans conséquences. Vous
+                pouvez consulter les petits sacrifices de gens particuliers et de professionnels en boucherie chevaline
+                partout en Enfer ... euh en France, que vous cherchiez des annonces immobilières, des voitures
+                d'occasion, des offres d'emploi, des meubles, du matériel électronique ou tout autre type de
+                produits...(*blush*).</p>
+        </div>
+    </div>
+{% endblock %}
+</body>
 </html>
