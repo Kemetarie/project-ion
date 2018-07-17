@@ -58,13 +58,9 @@ class UserController extends Controller{
         if($form->isValid()){
             
             $em = $this->getDoctrine()->getManager();
-            $insertUser = new User();
-            $insertUser->setUsername($form->get('username')->getData());
-            $insertUser->setEmail($form->get('email')->getData());
-            $insertUser->setPassword($form->get('password')->getData());
-            $insertUser->setRoles(Array("User"));
-            $insertUser->setDateRegistered(New DateTime());
-            $em->persist($insertUser);
+            $user->setRoles(Array("User"));
+            $user->setDateRegistered(New DateTime());
+            $em->persist($user);
             $em->flush();
             
             return new Response('Utilisateur inséré');
@@ -72,5 +68,12 @@ class UserController extends Controller{
         
         return $this->render('inscription.html.twig', array('form'=>$form->createView()));
 
+    }
+    /**
+     * 
+     * @Route("/connexion",name="connnexion")
+     */
+    public function connexionAction(Request $request){
+        
     }
 }
