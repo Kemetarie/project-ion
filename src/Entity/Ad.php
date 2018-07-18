@@ -53,12 +53,13 @@ class Ad
      */
     private $category;
     /**
-     * @ORM\OneToMany(targetEntity="Picture", mappedBy="ad")
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="ad", cascade={"persist", "remove"})
      */
     private $pictures;
 
     public function __construct() {
-        $this->picture = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
+
     }
 
     public function getId()
@@ -215,14 +216,14 @@ class Ad
     }
 
     public function addPicture($picture){
-        $this->getPictures()->add($picture);
         $picture->setAd($this);
+        $this->getPictures()->add($picture);
         return $this;
     }
 
     public function removePicture($picture){
-        $this->getPictures()->removeElement($picture);
         $picture->setAd(null);
+        $this->getPictures()->removeElement($picture);
         return $this;
     }
 }

@@ -32,7 +32,7 @@ class Picture
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ad", inversedBy="picture")
+     * @ORM\ManyToOne(targetEntity="ad", inversedBy="pictures", cascade={"persist", "remove"})
      */
     private $ad;
 
