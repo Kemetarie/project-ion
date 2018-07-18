@@ -22,81 +22,73 @@
             <header>
                 <nav class="navbar navbar-inverse navbar-fixed-top">
                     <div class="container">
-                        <div class="collapse navbar-collapse">
-                            <a class="navbar-brand logo" href="{{ path('accueil') }}"><img src="{{ asset('Media/ouioui.jpg') }}"
-                                                                                           alt="" width="50px"
-                                                                                           height="50px"/></a>
-                            <ul class="nav navbar-nav">
-                                <li><a class="navbar-brand" href="{{ path('Add ad') }}">Deposer une annonce</a></li>
-                                <li><a class="navbar-brand" href="{{ path('ad list') }}">Liste des annonces</a></li>
-                                <li>
-                                    {% if app.user %}
-                                        <a class="navbar-brand" href="#">Favoris</a>
-                                    {% else %}
-                                        <p></p>
-                                    {% endif %}                                        
-                                </li>
-                                <li>
-                                    {% if app.user %}
-                                        <a class="navbar-brand" href="#">Mes annonces</a>
-                                    {% else %}
-                                        <p></p>
-                                    {% endif %}
-                                </li>
-                                <li><a class="navbar-brand" href="{{ path('FAQ') }}">FAQ</a></li>
-                                <li><a class="navbar-brand" href="{{ path('CGU') }}">CGU</a></li>
-                                <li>
-                                    {% if app.user %}
-                                        <p></p>
-                                    {% else %}
-                                        <a class="navbar-brand" href="{{ path('inscription') }}">S'inscrire</a>
-                                    {% endif %}
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                                            data-target="#myModal">
+                        <div class="nav navbar-nav collapse navbar-collapse">
+                            <a class="navbar-brand logo" href="{{ path('accueil') }}">
+                                <img src="{{ asset('Media/ouioui.jpg') }}"
+                                     alt="" width="50px"
+                                     height="50px"/>
+                            </a>
+                            <a class="navbar-brand" href="{{ path('Add ad') }}">Deposer une annonce</a>
+                            <a class="navbar-brand" href="{{ path('ad list') }}">Liste des annonces</a>
 
-                                        {% if app.user %}
-                                            <p>Se déconnecter</p>
-                                        {% else %}
-                                            <p>Se connecter</p>
-                                        {% endif %}
-                                    </button>
+                            {% if app.user %}
+                                <a class="navbar-brand" href="#">Favoris</a>
+                            {% else %}
 
-                                    <div class="modal fade" id="myModal" role="dialog">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title">Se connecter</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Oui bonjour on y travaille attendez un peu bande de chiens 
-                                                    {% if error|default('') %}
-                                                        <div>{{ error.messageKey|trans(error.messageData, 'security')}}</div>
-                                                    {% endif %}
+                            {% endif %}                                        
 
-                                                    <form action='{{path('login')}}' method='post'>
-                                                        <label for="username">Identifiant : </label>
-                                                        <input type="text" id="username" name="_username" value="{{last_username|default('')}}" />
+                            {% if app.user %}
+                                <a class="navbar-brand" href="#">Mes annonces</a>
+                            {% else %}
 
-                                                        <label for="password">Mot de passe : </label>
-                                                        <input type="password" id="password" name="_password"/>
-                                                        <input type="hidden" name="_target_path" value="/accueil" />                                                        
-                                                        <button type="submit">Valider</button>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer
-                                                    </button>
-                                                </div>
-                                            </div>
+                            {% endif %}
 
+                            <a class="navbar-brand" href="{{ path('FAQ') }}">FAQ</a>
+                            <a class="navbar-brand" href="{{ path('CGU') }}">CGU</a>
+
+                            {% if app.user %}
+
+                            {% else %}
+                                <a class="navbar-brand" href="{{ path('inscription') }}">S'inscrire</a>
+                            {% endif %}
+
+                            {% if app.user %}
+                                <a href="{{ path('logout') }}" class="btn btn-lg btn-default highlight_black stylish connexion">Se déconnecter</a>
+                            {% else %}
+                                <a class="btn btn-lg btn-default highlight_black stylish connexion" data-toggle="modal"
+                                   data-target="#login">Se connecter</a>
+                            {% endif %}
+
+                            <div class="modal fade" id="login" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Se connecter</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Oui bonjour on y travaille attendez un peu bande de chiens 
+                                            {% if error|default('') %}
+                                                <div>{{ error.messageKey|trans(error.messageData, 'security')}}</div>
+                                            {% endif %}
+
+                                            <form action='{{path('login')}}' method='post'>
+                                                <label for="username">Identifiant : </label>
+                                                <input type="text" id="username" name="_username" value="{{last_username|default('')}}" />
+
+                                                <label for="password">Mot de passe : </label>
+                                                <input type="password" id="password" name="_password"/>
+                                                <input type="hidden" name="_target_path" value="/accueil" />                                                        
+                                                <button type="submit">Valider</button>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fermer
+                                            </button>
                                         </div>
                                     </div>
-
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </nav>

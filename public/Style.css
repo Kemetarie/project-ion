@@ -36,3 +36,8 @@ h1 {
     opacity: .5;
     z-index: 1;
 }
+
+.connexion {
+    float: right!important;
+    text-align: right!important;
+}
