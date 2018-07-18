@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotNull;
@@ -34,7 +35,7 @@ class UserController extends Controller{
      * 
      * @Route("/inscription",name="inscription")
      */
-    public function inscriptionAction(Request $request){
+    public function inscriptionAction(Request $request, UserPasswordEncoderInterface $passwordEncoder){
         $user = new User();
         $form = $this->createFormBuilder($user)
                 ->add('username',TextType::class,array('label'=>"Pseudonyme",'constraints'=>array(new NotNull,
@@ -58,6 +59,8 @@ class UserController extends Controller{
         
         
         if($form->isValid()){
+            $password = $passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
             
             $em = $this->getDoctrine()->getManager();
             $user->setRoles(Array("User"));
@@ -71,19 +74,21 @@ class UserController extends Controller{
         return $this->render('inscription.html.twig', array('form'=>$form->createView()));
 
     }
-    
+       
     /**
      * 
      * @Route("/login",name="login")
      */
+    /*
     public function loginAction(Request $request, AuthenticationUtils $authenticationUtils) {
-        //$error = $authenticationUtils->getLastAuthenticationError();
+        $error = $authenticationUtils->getLastAuthenticationError();
 
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('accueil.html.twig', array(
                     'last_username' => $lastUsername,
-                    //'error' => $error,
+                    'error' => $error,
         ));
     }
+    */
 }

@@ -49,17 +49,18 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     Oui bonjour on y travaille attendez un peu bande de chiens 
-                                                    <!--{#% if error %}
-                                                        <div>{{ error.messageKey|trans(error.messageData, 'security')}}<div>
-                                                    {% endif %#}-->
-                                                    
+                                                    {% if error|default('') %}
+                                                        <div>{{ error.messageKey|trans(error.messageData, 'security')}}</div>
+                                                    {% endif %}
+
                                                     <form action='{{path('login')}}' method='post'>
                                                         <label for="username">Identifiant : </label>
                                                         <input type="text" id="username" name="_username" value="{{last_username|default('')}}" />
-                                                        
+
                                                         <label for="password">Mot de passe : </label>
                                                         <input type="password" id="password" name="_password"/>
-                                                        
+                                                        <input type="hidden" name="_target_path" value="/accueil" />
+
                                                         <button type="submit">Valider</button>
                                                     </form>
                                                 </div>
@@ -82,7 +83,7 @@
         {% endblock %}
         <div class="container col-lg-8 col-lg-offset-2">
             {% block main %}
-
+                {{dump(error) }}
             {% endblock %}
         </div>
         {% block footer %}
