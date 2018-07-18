@@ -8,6 +8,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -54,9 +55,10 @@ class Ad
     /**
      * @ORM\OneToMany(targetEntity="Picture", mappedBy="ad")
      */
-    private $picture;
+    private $pictures;
+
     public function __construct() {
-        $this->picture = new Picture();
+        $this->picture = new ArrayCollection();
     }
 
     public function getId()
@@ -207,19 +209,20 @@ class Ad
     /**
      * @return mixed
      */
-    public function getPicture()
+    public function getPictures()
     {
-        return $this->picture;
+        return $this->pictures;
     }
 
-    /**
-     * @param mixed $pictures
-     * @return Ad
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
+    public function addPicture($picture){
+        $this->getPictures()->add($picture);
+        $picture->setAd($this);
+        return $this;
+    }
 
+    public function removePicture($picture){
+        $this->getPictures()->removeElement($picture);
+        $picture->setAd(null);
         return $this;
     }
 }
