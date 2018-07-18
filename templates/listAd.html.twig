@@ -1,9 +1,11 @@
 {% extends 'general.html.twig' %}
 
+
 {% block main %}
     <div class="container row col-lg-12 center-block ">
         <br>
-        <table border="1px black solid collate" , style="margin-bottom: 10px">
+        <table id="tableAd" class="display">
+            <thead>
             <tr>
                 <th style="text-align: center; padding: 5px">Catégorie</th>
                 <th style="text-align: center; padding: 5px">Titre</th>
@@ -13,34 +15,42 @@
                 <th style="text-align: center; padding: 5px">Prix</th>
                 <th style="text-align: center; padding: 5px">Date de dépot</th>
             </tr>
+            </thead>
+            <tbody>
             {% for ad in ads %}
                 <a href="{{ path('get ad', {'id': ad.id}) }}">
 
                     <tr onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
-                        <td style="padding: 5px">
+                        <td>
                             {{ ad.category.libelle }}
                         </td>
-                        <td style="padding: 5px">
+                        <td>
                             {{ ad.title }}
                         </td>
-                        <td style="padding: 5px">
+                        <td>
                             {{ ad.description }}
                         </td>
-                        <td style="padding: 5px">
+                        <td>
                             {{ ad.zip }}
                         </td>
-                        <td style="padding: 5px">
+                        <td>
                             {{ ad.city }}
                         </td>
-                        <td style="padding: 5px">
+                        <td>
                             {{ ad.price }} âmes
                         </td>
-                        <td style="padding: 5px">
+                        <td>
                             {{ ad.dateCreated.format('d/m/Y') }}
                         </td>
                     </tr>
                 </a>
             {% endfor %}
+            </tbody>
         </table>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#tableAd').DataTable();
+        });
+    </script>
 {% endblock %}
