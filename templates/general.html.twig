@@ -29,15 +29,38 @@
                             <ul class="nav navbar-nav">
                                 <li><a class="navbar-brand" href="{{ path('Add ad') }}">Deposer une annonce</a></li>
                                 <li><a class="navbar-brand" href="{{ path('ad list') }}">Liste des annonces</a></li>
-                                <li><a class="navbar-brand" href="#">Favoris</a></li>
-                                <li><a class="navbar-brand" href="#">Mes annonces</a></li>
+                                <li>
+                                    {% if app.user %}
+                                        <a class="navbar-brand" href="#">Favoris</a>
+                                    {% else %}
+                                        <p></p>
+                                    {% endif %}                                        
+                                </li>
+                                <li>
+                                    {% if app.user %}
+                                        <a class="navbar-brand" href="#">Mes annonces</a>
+                                    {% else %}
+                                        <p></p>
+                                    {% endif %}
+                                </li>
                                 <li><a class="navbar-brand" href="{{ path('FAQ') }}">FAQ</a></li>
                                 <li><a class="navbar-brand" href="{{ path('CGU') }}">CGU</a></li>
-                                <li><a class="navbar-brand" href="{{ path('inscription') }}">S'inscrire</a></li>
                                 <li>
-
+                                    {% if app.user %}
+                                        <p></p>
+                                    {% else %}
+                                        <a class="navbar-brand" href="{{ path('inscription') }}">S'inscrire</a>
+                                    {% endif %}
+                                </li>
+                                <li>
                                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal"
-                                            data-target="#myModal">Se connecter
+                                            data-target="#myModal">
+
+                                        {% if app.user %}
+                                            <p>Se déconnecter</p>
+                                        {% else %}
+                                            <p>Se connecter</p>
+                                        {% endif %}
                                     </button>
 
                                     <div class="modal fade" id="myModal" role="dialog">
@@ -59,8 +82,7 @@
 
                                                         <label for="password">Mot de passe : </label>
                                                         <input type="password" id="password" name="_password"/>
-                                                        <input type="hidden" name="_target_path" value="/accueil" />
-
+                                                        <input type="hidden" name="_target_path" value="/accueil" />                                                        
                                                         <button type="submit">Valider</button>
                                                     </form>
                                                 </div>
