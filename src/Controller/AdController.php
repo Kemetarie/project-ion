@@ -113,12 +113,13 @@ class AdController extends Controller
             ->getForm();
         $form->handleRequest($request);
 
-        if ($form->isValid()){
+        if ($form->isValid()) {
 
             $ad->setDateCreated(new \DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($ad);
             $em->flush();
+
             return $this->redirectToRoute('accueil');
         }
 
@@ -134,8 +135,21 @@ class AdController extends Controller
 
         $repo = $em->getRepository(Ad::class);
 
-        $ads = $repo->findBy(array(), array('category'=>'ASC'));
+        $ads = $repo->findBy(array(), array('category' => 'ASC'));
 
-        return $this->render('listAd.html.twig', array('ads'=>$ads));
+        return $this->render('listAd.html.twig', array('ads' => $ads));
+    }
+
+    /**
+     * @Route("add/get/{id}", name="get ad")
+     */
+    public function getAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $ad = $em->find(Ad::class, $id);
+
+        return $this->render('getAd.html.twig', array('ad' => $ad));
+
     }
 }

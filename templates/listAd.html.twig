@@ -3,36 +3,43 @@
 {% block main %}
     <div class="container row col-lg-12 center-block ">
         <br>
-        <table border="1px black solid collate">
+        <table border="1px black solid collate" , style="margin-bottom: 10px">
             <tr>
-                <th>Catégorie</th>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>CodePostal</th>
-                <th>Ville</th>
-                <th>Date de dépot</th>
+                <th style="text-align: center; padding: 5px">Catégorie</th>
+                <th style="text-align: center; padding: 5px">Titre</th>
+                <th style="text-align: center; padding: 5px">Description</th>
+                <th style="text-align: center; padding: 5px">CodePostal</th>
+                <th style="text-align: center; padding: 5px">Ville</th>
+                <th style="text-align: center; padding: 5px">Prix</th>
+                <th style="text-align: center; padding: 5px">Date de dépot</th>
             </tr>
             {% for ad in ads %}
-                <tr>
-                    <td>
-                        {{ ad.category.libelle }}
-                    </td>
-                    <td>
-                        {{ ad.title }}
-                    </td>
-                    <td>
-                        {{ ad.description }}
-                    </td>
-                    <td>
-                        {{ ad.zip }}
-                    </td>
-                    <td>
-                        {{ ad.city }}
-                    </td>
-                    <td>
-                        {{ ad.dateCreated.format('d/m/Y') }}
-                    </td>
-                </tr>
+                <a href="{{ path('get ad', {'id': ad.id}) }}">
+
+                    <tr onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
+                        <td style="padding: 5px">
+                            {{ ad.category.libelle }}
+                        </td>
+                        <td style="padding: 5px">
+                            {{ ad.title }}
+                        </td>
+                        <td style="padding: 5px">
+                            {{ ad.description }}
+                        </td>
+                        <td style="padding: 5px">
+                            {{ ad.zip }}
+                        </td>
+                        <td style="padding: 5px">
+                            {{ ad.city }}
+                        </td>
+                        <td style="padding: 5px">
+                            {{ ad.price }} âmes
+                        </td>
+                        <td style="padding: 5px">
+                            {{ ad.dateCreated.format('d/m/Y') }}
+                        </td>
+                    </tr>
+                </a>
             {% endfor %}
         </table>
     </div>
