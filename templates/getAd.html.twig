@@ -1,0 +1,12 @@
+{% extends 'general.html.twig' %}
+
+{% block main %}
+    Titre : {{ ad.title }} <br>
+    Description : {{ ad.description }} <br>
+    Ville : {{ ad.city }} <br>
+    Code postal : {{ ad.zip }} <br>
+    Prix : {{ ad.price }} âmes <br>
+    Déposé le : {{ ad.dateCreated.format('d/m/Y') }} <br>
+    Catégorie : {{ ad.category.libelle }} <br>
+    <br>
+{% endblock %}
