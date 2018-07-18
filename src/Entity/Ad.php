@@ -55,6 +55,9 @@ class Ad
      * @ORM\OneToMany(targetEntity="Picture", mappedBy="ad")
      */
     private $picture;
+    public function __construct() {
+        $this->picture = new Picture();
+    }
 
     public function getId()
     {
@@ -219,5 +222,4 @@ class Ad
 
         return $this;
     }
-
 }

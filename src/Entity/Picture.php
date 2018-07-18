@@ -9,6 +9,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity
@@ -23,7 +25,9 @@ class Picture
      */
     private $id;
     /**
-     * @ORM\Column(type="binary")
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpg" })
      */
     private $path;
 
