@@ -116,6 +116,9 @@ class AdController extends Controller
                 array(
                     'entry_type' => PictureType::class,
                     'entry_options' => array('label' => false),
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
                 )
             )
             ->add(
@@ -124,15 +127,16 @@ class AdController extends Controller
             )
             ->getForm();
         $form->handleRequest($request);
-
+        dump($form);
         if ($form->isValid()) {
-            $picture = $ad->getPictures()->get(0)->getPath();
-            dump($picture);
-            $path = $this->generateUniqueFileName().'.'.$picture->guessExtension();
-            $picture->move($this->getParameter('pictures_directory'), $path);
+            foreach ($ad->getPictures()->getValues() as $key => $picture){
 
-            $ad->getPictures()->get(0)->setPath($path);
+            $path = $this->generateUniqueFileName().'.'.$picture->getPath()->guessExtension();
+            $picture->getPath()->move($this->getParameter('pictures_directory'), $path);
 
+            $picture->setPath($path);
+            $ad->getPictures()->set($key, $picture);
+            }
             $ad->setDateCreated(new DateTime());
             $em = $this->getDoctrine()->getManager();
             $em->persist($ad);
