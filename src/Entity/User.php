@@ -9,12 +9,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity
  * @ORM\Table
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -182,7 +183,13 @@ class User
 
         return $this;
     }
-    
 
+    public function eraseCredentials() {
+        
+    }
+
+    public function getSalt() {
+        
+    }
 
 }
