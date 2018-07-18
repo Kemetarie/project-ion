@@ -1,0 +1,18 @@
+{% extends 'formAd.html.twig' %}
+{{ form_start(form) }}
+    {# render the task's only field: description #}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.zip) }}
+    {{ form_row(form.price) }}
+    {{ form_row(form.category) }}
+
+<h3>Tags</h3>
+<ul class="picture">
+    {# iterate over each existing tag and render its only field: name #}
+    {% for picture in form.pictures %}
+        <li>{{ form_row(picture) }}</li>
+    {% endfor %}
+</ul>
+{{ form_end(form) }}
