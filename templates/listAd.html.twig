@@ -43,9 +43,12 @@
                         <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
                             {{ ad.dateCreated.format('d/m/Y') }}
                         </td>
-                        <td>
-                            <a href="{{ path('favourites', {'id': ad.id}) }}" class="btn btn-lg btn-default highlight_black stylish favori">Favori</a>
-
+                        <td>                            
+                            {% if app.user.hasFavourite(ad) %}
+                                <a href="{{ path('favourites', {'id': ad.id}) }}" class="btn btn-success btn-lg btn-default highlight_black stylish">Favori</a>
+                            {% else %}
+                                <a href="{{ path('favourites', {'id': ad.id}) }}" class="btn btn-info btn-lg btn-default highlight_black stylish">Favori</a>
+                            {% endif %}
                         </td>
 
                     </tr>
