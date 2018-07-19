@@ -1,5 +1,7 @@
 {% extends 'general.html.twig' %}
-
+{% block title %}
+    Liste des annonces - {{parent()}}
+{% endblock %}
 {% block main %}
     Titre : {{ ad.title }} <br>
     Images :
