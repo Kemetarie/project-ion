@@ -119,6 +119,7 @@ class AdController extends Controller
                     'allow_add' => true,
                     'allow_delete' => true,
                     'by_reference' => false,
+                    'label' => '',
                 )
             )
             ->add(
@@ -138,6 +139,7 @@ class AdController extends Controller
             $ad->getPictures()->set($key, $picture);
             }
             $ad->setDateCreated(new DateTime());
+            $ad->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($ad);
             $em->flush();

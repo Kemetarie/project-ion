@@ -56,6 +56,14 @@ class Ad
      * @ORM\OneToMany(targetEntity="Picture", mappedBy="ad", cascade={"persist", "remove"})
      */
     private $pictures;
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="ads")
+     */
+    private $user;
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="ads")
+     */
+    private $isFavourite;
 
     public function __construct() {
         $this->pictures = new ArrayCollection();
@@ -226,4 +234,24 @@ class Ad
         $this->getPictures()->removeElement($picture);
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     * @return Ad
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
 }

@@ -1,18 +1,25 @@
 {{ form_start(form) }}
     {# render the task's only field: description #}
-    {{ form_row(form.title) }}
-    {{ form_row(form.description) }}
-    {{ form_row(form.city) }}
-    {{ form_row(form.zip) }}
-    {{ form_row(form.price) }}
-    {{ form_row(form.category) }}
-
+<div style="float: left; width: 100px;">{{ form_label(form.title) }}</div><div>{{ form_widget(form.title) }}</div>
+<br>
+<div style="float: left; width: 100px;">{{ form_label(form.description) }}</div><div>{{ form_widget(form.description) }}</div>
+<br>
+<div style="float: left; width: 100px;">{{ form_label(form.city) }}</div><div>{{ form_widget(form.city) }}</div>
+<br>
+<div style="float: left; width: 100px;">{{ form_label(form.zip) }}</div><div>{{ form_widget(form.zip) }}</div>
+<br>
+<div style="float: left; width: 100px;">{{ form_label(form.price) }}</div><div>{{ form_widget(form.price) }}</div>
+<br>
+<div style="float: left; width: 100px;">{{ form_label(form.category) }}</div><div>{{ form_widget(form.category) }}</div>
+<br>
+<div style="float: left; width: 100px;">{{ form_label(form.pictures) }}</div>
 <ul class="pictures" data-prototype="{{ form_widget(form.pictures.vars.prototype)|e('html_attr') }}">
     {% for picture in form.pictures %}
-        <li>{{ form_row(picture) }}</li>
+        <li>{{ form_widget(picture) }}</li>
+        <br>
     {% endfor %}
 </ul>
-
+<div style="float: left; width: 100px;" hidden>{{ form_row(form.pictures) }}</div>
 <br>
 {{ form_end(form) }}
 
