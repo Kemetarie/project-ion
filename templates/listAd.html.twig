@@ -6,45 +6,49 @@
         <br>
         <table id="tableAd" class="display">
             <thead>
-            <tr>
-                <th style="text-align: center; padding: 5px">Catégorie</th>
-                <th style="text-align: center; padding: 5px">Titre</th>
-                <th style="text-align: center; padding: 5px">Description</th>
-                <th style="text-align: center; padding: 5px">CodePostal</th>
-                <th style="text-align: center; padding: 5px">Ville</th>
-                <th style="text-align: center; padding: 5px">Prix</th>
-                <th style="text-align: center; padding: 5px">Date de dépot</th>
-            </tr>
+                <tr>
+                    <th style="text-align: center; padding: 5px">Catégorie</th>
+                    <th style="text-align: center; padding: 5px">Titre</th>
+                    <th style="text-align: center; padding: 5px">Description</th>
+                    <th style="text-align: center; padding: 5px">CodePostal</th>
+                    <th style="text-align: center; padding: 5px">Ville</th>
+                    <th style="text-align: center; padding: 5px">Prix</th>
+                    <th style="text-align: center; padding: 5px">Date de dépot</th>
+                    <th style="text-align: center; padding: 5px">Favoris</th>
+                </tr>
             </thead>
             <tbody>
-            {% for ad in ads %}
-                <a href="{{ path('get ad', {'id': ad.id}) }}">
+                {% for ad in ads %}
 
-                    <tr onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
-                        <td>
+                    <tr>
+
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
                             {{ ad.category.libelle }}
                         </td>
-                        <td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
                             {{ ad.title }}
                         </td>
-                        <td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
                             {{ ad.description }}
                         </td>
-                        <td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
                             {{ ad.zip }}
                         </td>
-                        <td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
                             {{ ad.city }}
                         </td>
-                        <td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
                             {{ ad.price }} âmes
                         </td>
-                        <td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
                             {{ ad.dateCreated.format('d/m/Y') }}
                         </td>
+                        <td>
+                            <a href="#" class="btn btn-lg btn-default highlight_black stylish favori">Favori</a>
+                        </td>
+
                     </tr>
-                </a>
-            {% endfor %}
+                {% endfor %}
             </tbody>
         </table>
     </div>
