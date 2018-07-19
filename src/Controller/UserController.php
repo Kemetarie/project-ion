@@ -68,27 +68,11 @@ class UserController extends Controller{
             $em->persist($user);
             $em->flush();
             
-            return new Response('Utilisateur inséré');
+            return $this->redirectToRoute('accueil');
         }
         
         return $this->render('inscription.html.twig', array('form'=>$form->createView()));
 
     }
        
-    /**
-     * 
-     * @Route("/login",name="login")
-     */
-    /*
-    public function loginAction(Request $request, AuthenticationUtils $authenticationUtils) {
-        $error = $authenticationUtils->getLastAuthenticationError();
-
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('accueil.html.twig', array(
-                    'last_username' => $lastUsername,
-                    'error' => $error,
-        ));
-    }
-    */
 }
