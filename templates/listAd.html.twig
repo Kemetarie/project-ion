@@ -44,7 +44,8 @@
                             {{ ad.dateCreated.format('d/m/Y') }}
                         </td>
                         <td>
-                            <a href="#" class="btn btn-lg btn-default highlight_black stylish favori">Favori</a>
+                            <a href="{{ path('favourites', {'id': ad.id}) }}" class="btn btn-lg btn-default highlight_black stylish favori">Favori</a>
+
                         </td>
 
                     </tr>

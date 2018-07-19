@@ -41,3 +41,7 @@ h1 {
     float: right!important;
     text-align: right!important;
 }
+
+.favori {
+    background-color: yellow;
+}
