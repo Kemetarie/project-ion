@@ -60,10 +60,6 @@ class Ad
      * @ORM\ManyToOne(targetEntity="User", inversedBy="ads")
      */
     private $user;
-    /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="ads")
-     */
-    private $isFavourite;
 
     public function __construct() {
         $this->pictures = new ArrayCollection();
