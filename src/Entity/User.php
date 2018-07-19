@@ -50,6 +50,10 @@ class User implements UserInterface
      *                  inverseJoinColumns={@ORM\JoinColumn(name="ad_id",referencedColumnName="id")})
      */
     private $favourite;
+    /**
+     * @ORM\OneToMany(targetEntity="Ad", mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $ads;
 
     /**
      * @return mixed
@@ -197,6 +201,27 @@ class User implements UserInterface
     public function hasFavourite($favourite)
     {
         return $this->favourite->contains($favourite);
+    }
+
+    public function getAds()
+    {
+        return $this->ads;
+    }
+
+    public function addPicture($ad)
+    {
+        $ad->setUser($this);
+        $this->getAds()->add($ad);
+
+        return $this;
+    }
+
+    public function removePicture($ad)
+    {
+        $ad->setUser(null);
+        $this->getAds()->removeElement($ad);
+
+        return $this;
     }
 
     public function eraseCredentials() {
