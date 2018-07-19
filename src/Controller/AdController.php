@@ -11,6 +11,7 @@ namespace App\Controller;
 
 use App\Entity\Ad;
 use App\Entity\Category;
+use App\Entity\User;
 use App\Form\PictureType;
 use DateTime;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -27,6 +28,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Type;
+use function dump;
 
 class AdController extends Controller
 {
@@ -203,6 +205,38 @@ class AdController extends Controller
         $em->flush();
 
         return $this->redirectToRoute("ad list");
+    }
+
+    /**
+     * 
+     * @Route("/unfavourites/{id}",name="unfavourites")
+     */
+    public function unfavAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $ad = $em->find(Ad::class, $id);
+
+
+        $this->getUser()->removeFavourite($ad);
+
+
+
+        $em->persist($ad);
+        $em->flush();
+
+        return $this->redirectToRoute("ad favlist");
+    }
+
+    /**
+     * @Route("ad/favlist", name="ad favlist")
+     */
+    public function listFavAction() {
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(User::class);
+
+        $user = $repo->find($this->getUser()->getId());
+
+        return $this->render('listFav.html.twig', array('ads' => $user->getFavourite()->getValues()));
     }
 
 }

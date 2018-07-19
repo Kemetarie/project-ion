@@ -1,10 +1,60 @@
-{% extends "general.html.twig" %}
-{% block title %}
-    Favoris - {{parent()}}
-{% endblock %}
-{% block header %}
-    {{parent()}}
-{% endblock %}
+{% extends 'general.html.twig' %}
+
+
 {% block main %}
-    
+    <div class="container row col-lg-12 center-block ">
+        <br>
+        <table id="tableAd" class="display">
+            <thead>
+                <tr>
+                    <th style="text-align: center; padding: 5px">Catégorie</th>
+                    <th style="text-align: center; padding: 5px">Titre</th>
+                    <th style="text-align: center; padding: 5px">Description</th>
+                    <th style="text-align: center; padding: 5px">CodePostal</th>
+                    <th style="text-align: center; padding: 5px">Ville</th>
+                    <th style="text-align: center; padding: 5px">Prix</th>
+                    <th style="text-align: center; padding: 5px">Date de dépot</th>
+                    <th style="text-align: center; padding: 5px">Favoris</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ad in ads %}
+
+                    <tr>
+
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
+                            {{ ad.category.libelle }}
+                        </td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
+                            {{ ad.title }}
+                        </td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
+                            {{ ad.description }}
+                        </td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
+                            {{ ad.zip }}
+                        </td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
+                            {{ ad.city }}
+                        </td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
+                            {{ ad.price }} âmes
+                        </td>
+                        <td onclick='document.location = "{{ path('get ad', {'id': ad.id}) }}";'>
+                            {{ ad.dateCreated.format('d/m/Y') }}
+                        </td>
+                        <td>                            
+                            <a href="{{ path('unfavourites', {'id': ad.id}) }}" class="btn btn-success btn-lg btn-default highlight_black stylish">Favori</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#tableAd').DataTable();
+        });
+    </script>
 {% endblock %}

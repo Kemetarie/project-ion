@@ -37,7 +37,7 @@
                             <a class="navbar-brand" href="{{ path('ad list') }}">Liste des annonces</a>
 
                             {% if app.user %}
-                                <a class="navbar-brand" href="#">Favoris</a>
+                                <a class="navbar-brand" href="{{ path('ad favlist') }}">Favoris</a>
                                 <a class="navbar-brand" href="#">Mes annonces</a>
                             {% else %}
 
