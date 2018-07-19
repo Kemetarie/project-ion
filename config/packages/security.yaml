@@ -21,6 +21,11 @@ security:
                 path:   /logout
                 target: /accueil
             provider: db_provider
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 600
+                path:     / 
+                always_remember_me: true
 
             # activate different ways to authenticate
 
