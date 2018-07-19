@@ -239,4 +239,16 @@ class AdController extends Controller
         return $this->render('listFav.html.twig', array('ads' => $user->getFavourite()->getValues()));
     }
 
+    /**
+     * @Route("ad/MyAd", name="ad mylist")
+     */
+    public function listMyAdAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $em->getRepository(Ad::class);
+
+        $ads = $repo->findBy(array('user' => $this->getUser()), array());
+
+        return $this->render('listMyAd.html.twig', array('ads' => $ads));
+    }
 }
