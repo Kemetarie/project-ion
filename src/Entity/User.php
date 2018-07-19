@@ -183,6 +183,21 @@ class User implements UserInterface
 
         return $this;
     }
+    
+    public function addFavourite($favourite)
+    {
+        $this->favourite->add($favourite);
+    }
+    
+    public function removeFavourite($favourite)
+    {
+        $this->favourite->removeElement($favourite);
+    }
+    
+    public function hasFavourite($favourite)
+    {
+        return $this->favourite->contains($favourite);
+    }
 
     public function eraseCredentials() {
         
